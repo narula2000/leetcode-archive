@@ -1,13 +1,9 @@
 class Solution:
-    def twoSum(self, nums, target):
-        """
-        :type nums: List[int]
-        :type target: int
-        :rtype: List[int]
-        """
-        for c,i in enumerate(nums):
-            if c<len(nums):
-                for v,j in enumerate(nums[c+1:]):
-                    if i + j == target:
-                        return [c,c+v+1]
-                    
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        hash = dict()
+
+        for idx, val in enumerate(nums):
+            diff = target - val
+            if val in hash:
+                return [hash[val], idx]
+            hash[diff] = idx
