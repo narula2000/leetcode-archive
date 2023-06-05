@@ -6,13 +6,13 @@ class Solution:
         rise = y_2 - y_1
         run = x_2 - x_1
 
-        if run == 0:
+        if run == 0: # Check if other line are also straight
             for x, y in coord:
                 if x != x_1:
                     return False
             return True
 
-        if rise == 0:
+        if rise == 0: # Check if other line are also straight
             for x, y in coord:
                 if y != y_1:
                     return False
