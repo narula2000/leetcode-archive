@@ -1,15 +1,7 @@
-from collections import Counter
-
 class Solution:
     def findTheDifference(self, s: str, t: str) -> str:
-        hash_s = Counter(s)
-        hash_t = Counter(t)
-
-        for key, val in hash_t.items():
-            if key not in hash_s:
-                return key
-            else:
-                if val != hash_s[key]:
-                    return key
-        
-        return ""
+        s, t = sorted(s), sorted(t)
+        for i, val in enumerate(s):
+            if val != t[i]:
+                return t[i]
+        return t[-1]
