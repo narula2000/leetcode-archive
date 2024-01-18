@@ -1,18 +1,13 @@
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
-        if len(s) != len(t):
+        c_s, c_t = Counter(s), Counter(t)
+        
+        if c_s.keys() != c_t.keys():
             return False
-        visited = dict()
-        for char in s:
-            if char in visited:
-                visited[char] += 1
-            else:
-                visited[char] = 1
-        for char in t:
-            if char not in visited:
+
+        for k, v in c_t.items():
+            if k not in c_s.keys():
                 return False
-            elif visited[char] == 0:
+            if c_s[k] != c_t[k]:
                 return False
-            else:
-                visited[char] -= 1
         return True
