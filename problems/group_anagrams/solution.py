@@ -1,9 +1,9 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        cache = defaultdict(list)
+        dic = defaultdict(list)
 
         for word in strs:
-            sorted_word = "".join(sorted(word))
-            cache[sorted_word].append(word)
+            sorted_w = "".join(sorted(word))
+            dic[sorted_w].append(word)
         
-        return cache.values()
+        return list(dic.values())
