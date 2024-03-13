@@ -1,18 +1,21 @@
-name: YALCST
+name: Sync Leetcode
 
 on:
   workflow_dispatch:
   schedule:
-    - cron:  '59 23 * * *'
+    - cron: "59 23 * * *"
 
 jobs:
-  Sync:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Sync
-      uses: m4tu4g/YALCST@main
-      with:
-        github-token: ${{ github.token }}
-        leetcode-csrf-token: ${{ secrets.LEETCODE_CSRF_TOKEN }}
-        leetcode-session: ${{ secrets.LEETCODE_SESSION }}
+      - name: Sync
+        uses: joshcai/leetcode-sync@v1.5
+        with:
+          github-token: ${{ github.token }}
+          leetcode-csrf-token: ${{ secrets.LEETCODE_CSRF_TOKEN }}
+          leetcode-session: ${{ secrets.LEETCODE_SESSION }}
+          destination-folder: problems
+          verbose: true
+          commit-header: '[LeetCode Sync]'
