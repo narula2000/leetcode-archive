@@ -19,4 +19,4 @@ class Solution:
             else:
                 bonquets += (flowers + 1) // k
                 flowers = (flowers + 1) % k
-        return bonquets >= m 
+        return bonquets >= m  
