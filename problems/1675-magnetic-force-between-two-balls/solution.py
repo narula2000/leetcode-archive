@@ -1,27 +1,18 @@
-class Solution(object):
-    def maxDistance(self, position, m):
+class Solution:
+    def maxDistance(self, position: List[int], m: int) -> int:
         position.sort()
-        lo, hi = 1, (position[-1] - position[0]) // (m - 1)
-        ans = 1
-        
-        while lo <= hi:
-            mid = lo + (hi - lo) // 2
-            if self.canWePlace(position, mid, m):
+        l, r = 1, position[-1] - position[0]
+        ans = -1
+        while l <= r:
+            mid = l + (r - l) // 2
+            last_position, balls = position[0], 1
+            for i in range(1, len(position)):
+                if position[i] - last_position >= mid:
+                    last_position = position[i]
+                    balls += 1
+            if balls >= m:
                 ans = mid
-                lo = mid + 1
+                l = mid + 1
             else:
-                hi = mid - 1
-        
-        return ans
-    
-    def canWePlace(self, arr, dist, balls):
-        countBalls = 1
-        lastPlaced = arr[0]
-        for i in range(1, len(arr)):
-            if arr[i] - lastPlaced >= dist:
-                countBalls += 1
-                lastPlaced = arr[i]
-            if countBalls >= balls:
-                return True
-        return False
-         
+                r = mid - 1
+        return ans 
